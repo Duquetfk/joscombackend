@@ -7,7 +7,11 @@ const fs = require('fs');
 
 const app = express();
 console.log(">>> [SISTEMA JOSCOM] Cargando rutas nuevas... v2");
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://frontend-pi-roan-69.vercel.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 app.use(express.json());
 
 // --- CONFIGURACIÓN DE MULTER (FOTOS) ---
