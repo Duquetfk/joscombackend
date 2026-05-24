@@ -22,11 +22,13 @@ const upload = multer({ storage: storage });
 app.use('/uploads', express.static('uploads'));
 
 // --- CONEXIÓN BD ---
+// --- CONEXIÓN BD INTELIGENTE (PRODUCCIÓN / LOCAL) ---
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',      
-    password: 'Emmanuelpp12', 
-    database: 'joscom_taller' 
+    host: process.env.DB_HOST || 'localhost',
+    port: process.env.DB_PORT || 3306,
+    user: process.env.DB_USER || 'root',      
+    password: process.env.DB_PASSWORD || 'Emmanuelpp12', 
+    database: process.env.DB_NAME || 'joscom_taller' 
 });
 
 db.connect(err => {
